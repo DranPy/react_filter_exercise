@@ -1,9 +1,9 @@
 import * as types from '../types/people';
 
 // this is an example action
-export const setFilter = (payload) => ({
+export const setFilter = (filterQuery) => ({
   type: types.SET_FILTER,
-  payload: payload
+  filterQuery: filterQuery
 });
 
 // ...

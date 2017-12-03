@@ -29,10 +29,25 @@ export default function browse(state = initialState, action) {
   switch (action.type) {
     case types.SET_FILTER:
       return {
-        people:state.people,
-        filterQuery:action.payload
+        people: state.people,
+        filterQuery: action.filterQuery
       };
     default:
       return state;
+  }
+}
+
+// Selectors
+
+export function getFilteredPeople(people, filter) {
+  switch(filter) {
+    case 'All':
+      return people;
+    default:
+      const filterNormalize = filter && filter.toLowerCase();
+      const filteredPeople = people.filter((person) => {
+        return person.name.toLowerCase().indexOf(filterNormalize) !== -1;
+      });
+    return filteredPeople;
   }
 }

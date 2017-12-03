@@ -2,28 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-// ...
+import { getFilteredPeople }  from '../reducers/people';
 
 class People extends Component {
   static propTypes = {
-    filter: PropTypes.string,
     people: PropTypes.array,
-
   };
 
-
-
-
   render() {
-    this.filter= this.props.filter.toLowerCase();
-    this.filteredPeople = this.props.people.filter((person) => {
-        return person.name.toLowerCase().indexOf(this.filter)!==-1;
-    });
-
     return (
       <div>
-          {this.filteredPeople.map((person) => {
+          {this.props.people.map((person) => {
               return <div key={person.id} className='App-box'>{person.name}</div>
             })
           }
@@ -32,10 +21,9 @@ class People extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  people:state.browse.people,
-  filter:state.browse.filterQuery
-});
 
+const mapStateToProps = (state) => ({
+  people: getFilteredPeople(state.browse.people, state.browse.filterQuery)
+});
 
 export default connect(mapStateToProps)(People);

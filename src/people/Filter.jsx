@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {setFilter} from '../actions/people'
+import { setFilter } from '../actions/people'
 // ...
 
 class Filter extends Component {
@@ -17,7 +17,7 @@ class Filter extends Component {
   render() {
     return (
       <div className='App-box'>
-        <input type='text' onChange={this.handleChange} ></input>
+        <input type='text' onChange={this.handleChange}></input>
       </div>
     );
   }
